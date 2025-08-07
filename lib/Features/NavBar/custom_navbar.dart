@@ -1,4 +1,5 @@
 import 'package:attendence_app/Features/home/home_view.dart';
+import 'package:attendence_app/Features/image_scan/image_scan_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import '../leave_request/leave_request_view.dart';
@@ -77,14 +78,14 @@ class CustomNavDrawer extends StatelessWidget {
                               },
                             ),
                             _buildMenuItem(
-                              "assets/leave_request.png",
-                              'Leave Request',
+                              "assets/scan_image_icon.png",
+                              'Tiretest.ai Analysis',
                               onTap: () async {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) =>
-                                        LeaveApplicationFormScreen(),
+                                        TireScannerScreen(),
                                   ),
                                 );
                               },
