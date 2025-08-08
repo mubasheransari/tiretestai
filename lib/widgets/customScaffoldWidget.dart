@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../Features/navbar/custom_navbar.dart';
 import '../Features/navbar/drawer_menu_button.dart';
 
-
 class CustomScaffoldWidget extends StatelessWidget {
   final Widget body;
   final PreferredSizeWidget? appBar;
@@ -35,10 +34,7 @@ class CustomScaffoldWidget extends StatelessWidget {
       body: DecoratedBox(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [
-              Color(0xFFE6DCFD),
-              Color(0xFFD8E7FF),
-            ],
+            colors: [Color(0xFFE6DCFD), Color(0xFFD8E7FF)],
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
           ),
@@ -48,8 +44,10 @@ class CustomScaffoldWidget extends StatelessWidget {
             children: [
               if (isAppBarContentRequired)
                 Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 12,
+                  ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -62,8 +60,10 @@ class CustomScaffoldWidget extends StatelessWidget {
                               child: const CircleAvatar(
                                 radius: 22,
                                 backgroundColor: Colors.white,
-                                child: Icon(Icons.arrow_back,
-                                    color: Colors.black),
+                                child: Icon(
+                                  Icons.arrow_back,
+                                  color: Colors.black,
+                                ),
                               ),
                             ),
                       Padding(
