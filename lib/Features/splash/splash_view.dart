@@ -120,11 +120,12 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Container(
         width: MediaQuery.of(context).size.width,
         decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Color(0xFFE6DCFD), Color(0xFFD8E7FF)],
-            begin: Alignment.centerLeft,
-            end: Alignment.centerRight,
-          ),
+          color: Colors.white
+          // gradient: LinearGradient(
+          //   colors: [Color(0xFFE6DCFD), Color(0xFFD8E7FF)],
+          //   begin: Alignment.centerLeft,
+          //   end: Alignment.centerRight,
+          // ),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
