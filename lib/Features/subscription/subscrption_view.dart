@@ -20,7 +20,17 @@ class _SubscriptionPlanViewState extends State<SubscriptionPlanView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-             drawer: CustomNavDrawer(),
+            appBar: AppBar(
+        title: const Text(
+          
+          "Subscription",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
+             //drawer: CustomNavDrawer(),
       backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
@@ -43,13 +53,13 @@ class _SubscriptionPlanViewState extends State<SubscriptionPlanView> {
 
           children: [
             SizedBox(height: 10,),
-                  Center(
-                    child:  Text(
-                                    "Subscription".toUpperCase(),
-                                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
-                                  ),
-                  ),
-              const SizedBox(height: 15),
+                  // Center(
+                  //   child:  Text(
+                  //                   "Subscription".toUpperCase(),
+                  //                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
+                  //                 ),
+                  // ),
+           //   const SizedBox(height: 15),
 
               // Price & Plan
               const Text(
@@ -238,20 +248,20 @@ class _SubscriptionPlanViewState extends State<SubscriptionPlanView> {
               )
           ],
         ),
-           Positioned(
-            top: 1,
-            left: 1,
-            child: InkWell(
-      onTap: () {
-     Navigator.of(context).pop();
-      },
-      child:  CircleAvatar(
-        radius: 18,
-        backgroundColor: Colors.grey[100],
-        child: Icon(Icons.arrow_back)
-      ),
-    )
-          ),
+    //        Positioned(
+    //         top: 1,
+    //         left: 1,
+    //         child: InkWell(
+    //   onTap: () {
+    //  Navigator.of(context).pop();
+    //   },
+    //   child:  CircleAvatar(
+    //     radius: 18,
+    //     backgroundColor: Colors.grey[100],
+    //     child: Icon(Icons.arrow_back)
+    //   ),
+    // )
+    //       ),
             ],
           ),
         ),

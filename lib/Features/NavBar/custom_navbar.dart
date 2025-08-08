@@ -49,7 +49,7 @@ class _CustomNavDrawerState extends State<CustomNavDrawer> {
           });
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => TireScannerScreen(capturedImage: capturedImage!)),
+            MaterialPageRoute(builder: (context) => ReportScreen(capturedImage: capturedImage!)),
           );
         } else {
           Fluttertoast.showToast(
@@ -132,12 +132,12 @@ class _CustomNavDrawerState extends State<CustomNavDrawer> {
                               "assets/scan_image_icon.png",
                               'Tiretest.ai Analysis',
                               onTap: () async {
-                                _scanImage();
+                                 _scanImage();
                                 // Navigator.push(
                                 //   context,
                                 //   MaterialPageRoute(
                                 //     builder: (context) =>
-                                //         TireScannerScreen(),
+                                //         ReportScreen(),
                                 //   ),
                                 // );
                               },

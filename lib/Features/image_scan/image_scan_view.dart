@@ -6,6 +6,102 @@ import 'package:image_picker/image_picker.dart';
 import 'package:video_player/video_player.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+
+
+
+import 'package:flutter/material.dart';
+
+class ReportScreen extends StatelessWidget {
+    File capturedImage; 
+   ReportScreen({required this.capturedImage});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color(0xFFF4F6FA),
+      appBar: AppBar(
+        title: const Text(
+          
+          "Report Details",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Card(
+          elevation: 6,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: [
+                Image.file(
+               capturedImage,
+                width: 300,
+                height: 200,
+                fit: BoxFit.cover,
+              ),
+                // Image
+                // ClipRRect(
+                //   borderRadius: BorderRadius.circular(12),
+                //   child: Image.asset(
+                //     'assets/report_image.png', // Change to your image
+                //     height: 180,
+                //     width: double.infinity,
+                //     fit: BoxFit.cover,
+                //   ),
+                // ),
+                const SizedBox(height: 20),
+
+                // Report Text
+                const Text(
+                  "Tiretest.AI Report",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black87,
+                  ),
+                ),
+                const SizedBox(height: 8),
+          //       Padding(
+          //   padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          //   child: Text(
+          //     '✔️ Tread depth is optimal\n'
+          //     '✔️ No visible cracks\n'
+          //     '✔️ Tire pressure appears consistent\n'
+          //     '⚠️ Recommend full check after 1000km\n',
+          //               style: TextStyle(
+          //           fontSize: 15,
+          //           color: Colors.black54,
+          //           height: 1.5,
+          //         ),
+          //         textAlign: TextAlign.justify,
+          //   ),
+          // ),
+                const Text(
+                  "The tread depth is optimal and there are no visible cracks. The tire pressure appears consistent; however, a full check is recommended after 1000 km.",
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.black54,
+                    height: 1.5,
+                  ),
+                  textAlign: TextAlign.justify,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
 class TireScannerScreen extends StatefulWidget {
    File capturedImage; 
    TireScannerScreen({required this.capturedImage});
