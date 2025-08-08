@@ -156,7 +156,7 @@ class _RouteGoogleMapState extends State<RouteGoogleMap> {
               padding: const EdgeInsets.only(bottom: 90),
               onMapCreated: _onMapCreated,
               initialCameraPosition: _initialCameraPosition!,
-              mapType: MapType.normal,
+              mapType: MapType.terrain,
               markers: _markers,
               myLocationButtonEnabled: false,
               zoomControlsEnabled: false,

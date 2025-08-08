@@ -1,16 +1,66 @@
+import 'dart:io';
+
 import 'package:attendence_app/Features/home/home_view.dart';
 import 'package:attendence_app/Features/image_scan/image_scan_view.dart';
 import 'package:attendence_app/Features/subscription/subscrption_view.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:image_picker/image_picker.dart';
 import '../leave_request/leave_request_view.dart';
 
-class CustomNavDrawer extends StatelessWidget {
+class CustomNavDrawer extends StatefulWidget {
+  @override
+  State<CustomNavDrawer> createState() => _CustomNavDrawerState();
+}
+
+class _CustomNavDrawerState extends State<CustomNavDrawer> {
   @override
   Widget build(BuildContext context) {
     final storage = GetStorage();
     var time = storage.read("checkin_time");
     var date = storage.read("checkin_date");
+    File? capturedImage;
+    bool _showReport = false;
+
+    Future<void> _scanImage() async {
+      final picker = ImagePicker();
+      final pickedFile = await picker.pickImage(source: ImageSource.camera);
+
+      if (pickedFile != null) {
+        setState(() {
+          capturedImage = File(pickedFile.path);
+          _showReport = false;
+        });
+
+        // Open full-screen ad screen
+        final bool completed = await Navigator.push(
+          context,
+          MaterialPageRoute(
+            fullscreenDialog: true,
+            builder: (_) => FullScreenAdView(),
+          ),
+        );
+
+        // If ad was completed, show report
+        if (completed) {
+          setState(() {
+            _showReport = true;
+          });
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => TireScannerScreen(capturedImage: capturedImage!)),
+          );
+        } else {
+          Fluttertoast.showToast(
+            msg: "You should complete the ad to get your tire report",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+          );
+        }
+      }
+    }
+
     return Padding(
       padding: const EdgeInsets.only(top: 65.0),
       child: SizedBox(
@@ -44,6 +94,7 @@ class CustomNavDrawer extends StatelessWidget {
                       SizedBox(height: 9),
 
                       Divider(thickness: 1, height: 1),
+
                       // Padding(
                       //   padding: const EdgeInsets.only(left: 20.0, top: 10),
                       //   child: Text(
@@ -58,7 +109,6 @@ class CustomNavDrawer extends StatelessWidget {
                       // ),
                       // SizedBox(height: 5),
                       // Divider(thickness: 1, height: 1),
-
                       SizedBox(height: 9),
                       // Menu Items
                       Expanded(
@@ -82,16 +132,17 @@ class CustomNavDrawer extends StatelessWidget {
                               "assets/scan_image_icon.png",
                               'Tiretest.ai Analysis',
                               onTap: () async {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        TireScannerScreen(),
-                                  ),
-                                );
+                                _scanImage();
+                                // Navigator.push(
+                                //   context,
+                                //   MaterialPageRoute(
+                                //     builder: (context) =>
+                                //         TireScannerScreen(),
+                                //   ),
+                                // );
                               },
                             ),
-                                _buildMenuItem(
+                            _buildMenuItem(
                               "assets/subscription.png",
                               'Subscribe',
                               onTap: () async {
@@ -99,15 +150,15 @@ class CustomNavDrawer extends StatelessWidget {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) =>
-                                     SubscriptionPlanView() //  SubscriptionView(),
+                                        SubscriptionPlanView(), //  SubscriptionView(),
                                   ),
                                 );
                               },
                             ),
-                            _buildMenuItem(
-                              "assets/change_password.png",
-                              'Change Password',
-                            ),
+                            // _buildMenuItem(
+                            //   "assets/change_password.png",
+                            //   'Change Password',
+                            // ),
                             Divider(),
                             ListTile(
                               leading: Image.asset("assets/logout.png"),

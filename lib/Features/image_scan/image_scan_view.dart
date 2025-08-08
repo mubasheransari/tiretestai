@@ -6,9 +6,10 @@ import 'package:image_picker/image_picker.dart';
 import 'package:video_player/video_player.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-
-
 class TireScannerScreen extends StatefulWidget {
+   File capturedImage; 
+   TireScannerScreen({required this.capturedImage});
+
   @override
   _TireScannerScreenState createState() => _TireScannerScreenState();
 }
@@ -58,7 +59,7 @@ class _TireScannerScreenState extends State<TireScannerScreen> {
         width: 250,
         height: 150,
         decoration: BoxDecoration(
-          color: Colors.grey.shade300,
+          color: Colors.white,
           borderRadius: BorderRadius.circular(15),
           border: Border.all(color: Colors.blueAccent, width: 2),
         ),
@@ -76,11 +77,34 @@ class _TireScannerScreenState extends State<TireScannerScreen> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          if (_capturedImage != null)
+          SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+          Row(
+            //  mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              InkWell(
+                onTap: () {
+                  Navigator.of(context).pop();
+                },
+                child: CircleAvatar(
+                  radius: 18,
+                  backgroundColor: Colors.grey[100],
+                  child: Icon(Icons.arrow_back),
+                ),
+              ),
+              SizedBox(width: MediaQuery.of(context).size.width * 0.27),
+
+              Text(
+                "Report",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
+              ),
+            ],
+          ),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.12),
+    
             ClipRRect(
               borderRadius: BorderRadius.circular(12),
               child: Image.file(
-                _capturedImage!,
+                widget.capturedImage,
                 width: 300,
                 height: 200,
                 fit: BoxFit.cover,
@@ -109,13 +133,12 @@ class _TireScannerScreenState extends State<TireScannerScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScaffoldWidget(
-      
-   
+    return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: _showReport ? _buildResultView() : Center(child: _buildScanView()),
-      ), appbartitle: _showReport ?'Report':'Scan',
+        child:  _buildResultView()
+  
+      ), // appbartitle: _showReport ?'Report':'Scan',
     );
   }
 }
@@ -172,14 +195,16 @@ class _FullScreenAdViewState extends State<FullScreenAdView> {
         children: [
           Center(
             child: _controller.value.isInitialized
-                ? SizedBox.expand(child: FittedBox(
-                    fit: BoxFit.cover,
-                    child: SizedBox(
-                      width: _controller.value.size.width,
-                      height: _controller.value.size.height,
-                      child: VideoPlayer(_controller),
+                ? SizedBox.expand(
+                    child: FittedBox(
+                      fit: BoxFit.cover,
+                      child: SizedBox(
+                        width: _controller.value.size.width,
+                        height: _controller.value.size.height,
+                        child: VideoPlayer(_controller),
+                      ),
                     ),
-                  ))
+                  )
                 : CircularProgressIndicator(),
           ),
           // Close button
