@@ -98,13 +98,29 @@ class _RouteGoogleMapState extends State<RouteGoogleMap> {
   }
 
   void _addRandomShopMarkers() {
+
     final List<LatLng> randomShops = [
-      const LatLng(24.8615, 67.0099),
-      const LatLng(24.8581, 67.0136),
-      const LatLng(24.8672, 67.0211),
-      const LatLng(24.8569, 67.0012),
-      const LatLng(24.8703, 67.0455),
-    ];
+  const LatLng(40.7128, -74.0060), // New York, NY
+  const LatLng(34.0522, -118.2437), // Los Angeles, CA
+  const LatLng(41.8781, -87.6298), // Chicago, IL
+  const LatLng(29.7604, -95.3698), // Houston, TX
+  const LatLng(25.7617, -80.1918), // Miami, FL
+  const LatLng(39.7392, -104.9903), // Denver, CO
+  const LatLng(47.6062, -122.3321), // Seattle, WA
+  const LatLng(33.4484, -112.0740), // Phoenix, AZ
+  const LatLng(42.3601, -71.0589), // Boston, MA
+  const LatLng(37.7749, -122.4194), // San Francisco, CA
+  const LatLng(33.7490, -84.3880), // Atlanta, GA
+  const LatLng(32.7767, -96.7970), // Dallas, TX
+];
+
+    // final List<LatLng> randomShops = [
+    //   const LatLng(24.8615, 67.0099),
+    //   const LatLng(24.8581, 67.0136),
+    //   const LatLng(24.8672, 67.0211),
+    //   const LatLng(24.8569, 67.0012),
+    //   const LatLng(24.8703, 67.0455),
+    // ];
 
     for (int i = 0; i < randomShops.length; i++) {
       final shopId = 'shop_$i';
